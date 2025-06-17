@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para você, amor ❤️</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: 'Playfair Display', serif;
+      background: #0b0033;
+      color: white;
+    }
+
+    body {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #ff6699;
+      color: white;
+      box-shadow: 0 0 10px rgba(255, 100, 150, 0.8);
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff3366;
+    }
+
+    .carta {
+      position: relative;
+      background: rgba(255, 255, 255, 0.95);
+      color: #330033;
+      border-radius: 20px;
+      max-width: 90%;
+      margin: 30px auto 40px auto;
+      padding: 0 0;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      text-align: justify;
+      user-select: text;
+
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 1s ease, opacity 1s ease, padding 1s ease;
+    }
+
+    .carta.show {
+      max-height: 5000px;
+      opacity: 1;
+      padding: 30px 20px;
+    }
+
+    .carta img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(255, 102, 153, 0.8);
+      margin: 0 auto 30px;
+      display: block;
+      user-select: none;
+    }
+
+    .carta::before {
+      content: "";
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #ff6699 50%, transparent 50%);
+      border-radius: 0 20px 0 0;
+      box-shadow: 2px 2px 8px rgba(255,102,153,0.6);
+      pointer-events: none;
+    }
+
+    #audio-controls {
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    #audio-controls.show {
+      opacity: 1;
+    }
+
+    #audio-controls button {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+      .carta {
+        font-size: 1rem;
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Para você, amor ❤️</h1>
+
+  <button id="openBtn">Abrir Carta</button>
+  <button id="resetBtn">Resetar</button>
+
+  <div class="carta" id="carta">
+    <img src="foto.jpg" alt="Foto nossa" />
+    Amor, eu sei que o Dia dos Namorados já passou, mas não podia deixar de te escrever isso.<br><br>
+    O tempo pode ter me feito atrasar, mas nunca vai atrasar o que eu sinto por você.<br><br>
+    Cada momento ao seu lado é especial, não importa a data.<br><br>
+    Você é minha inspiração diária, meu motivo pra sorrir e sonhar.<br><br>
+    Desculpa por não ter feito algo no dia certo, mas hoje quero compensar com palavras sinceras.<br><br>
+    Te amo de um jeito que não dá pra medir, nem explicar direito.<br><br>
+    Agradeço por sua paciência, seu carinho e por nunca desistir de nós.<br><br>
+    Você merece ser lembrada e amada todos os dias, não só em datas especiais.<br><br>
+    Meu amor por você não tem hora, nem calendário, ele é constante e verdadeiro.<br><br>
+    Mesmo atrasado, só quero que saiba: eu te amo muito! ❤️<br><br>
+    Que venham muitos outros momentos lindos ao seu lado.<br><br>
+    Você é minha escolha diária, meu motivo de felicidade.<br><br>
+    Obrigado por existir na minha vida!<br><br>
+    Te amo, ontem, hoje e sempre! ❤️
+  </div>
+
+  <div id="audio-controls">
+    <audio id="audio" src="musica.mp3" loop></audio><br>
+    <button id="playMusicBtn">▶️ Tocar Música</button>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById('openBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const carta = document.getElementById('carta');
+    const audioControls = document.getElementById('audio-controls');
+    const audio = document.getElementById('audio');
+    const playMusicBtn = document.getElementById('playMusicBtn');
+
+    openBtn.addEventListener('click', () => {
+      carta.classList.add('show');
+      audioControls.classList.add('show');
+    });
+
+    resetBtn.addEventListener('click', () => {
+      carta.classList.remove('show');
+      audioControls.classList.remove('show');
+      audio.pause();
+      audio.currentTime = 0;
+      playMusicBtn.textContent = '▶️ Tocar Música';
+    });
+
+    playMusicBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playMusicBtn.textContent = '⏸️ Pausar Música';
+      } else {
+        audio.pause();
+        playMusicBtn.textContent = '▶️ Tocar Música';
+      }
+    });
+  </script>
+
+</body>
+</html>
